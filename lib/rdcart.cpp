@@ -251,12 +251,16 @@ int RDCart::year() const
 }
 
 
-void RDCart::setYear(int year)
-{
-  SetRow("YEAR",QString().sprintf("%04d-01-01",year));
-  metadata_changed=true;
-}
-
+ void RDCart::setYear(int year)
+ {
+  if( year > 0) {
+    SetRow("YEAR",QString().sprintf("%04d-01-01",year));
+  }
+  else {
+    SetRow("YEAR",QString("NULL"));
+  }
+   metadata_changed=true;
+ }
 
 QString RDCart::schedCodes() const
 {
